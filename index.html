@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>¿Y si este QR fuera malicioso?</title>
+
+  <meta
+    name="description"
+    content="Experiencia educativa sobre QR Phishing, phishing, smishing, vishing e ingeniería social."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, #172554 0%, transparent 30%),
+        radial-gradient(circle at top left, #450a0a 0%, transparent 25%),
+        #020617;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    /* ENCABEZADO */
+
+    .hero {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(127, 29, 29, 0.50),
+          rgba(15, 23, 42, 0.96)
+        );
+      border: 1px solid rgba(248, 113, 113, 0.30);
+      border-radius: 28px;
+      padding: 55px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.40);
+    }
+
+    .alerta {
+      display: inline-block;
+      color: #fca5a5;
+      background: rgba(239, 68, 68, 0.15);
+      padding: 9px 16px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      max-width: 900px;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      max-width: 800px;
+      font-size: 1.18rem;
+      color: #cbd5e1;
+    }
+
+    .pregunta {
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.30);
+      border-left: 4px solid #ef4444;
+      border-radius: 12px;
+      color: #fecaca;
+      font-size: 1.05rem;
+    }
+
+    /* QUISHING */
+
+    .quishing {
+      margin-top: 35px;
+      background: rgba(6, 182, 212, 0.08);
+      border: 1px solid rgba(34, 211, 238, 0.30);
+      border-radius: 25px;
+      padding: 35px;
+    }
+
+    .quishing-icono {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    .quishing h2 {
+      color: #67e8f9;
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .quishing p {
+      color: #cbd5e1;
+      font-size: 1.08rem;
+      max-width: 900px;
+    }
+
+    /* TÍTULOS */
+
+    .section-title {
+      text-align: center;
+      margin: 55px 0 30px;
+    }
+
+    .section-title span {
+      color: #64748b;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .section-title h2 {
+      margin-top: 8px;
+      font-size: 2.2rem;
+    }
+
+    /* TARJETAS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 22px;
+      padding: 28px;
+      transition: 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #0891b2;
+    }
+
+    .icon {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .card > p {
+      color: #cbd5e1;
+    }
+
+    .ejemplo {
+      margin-top: 20px;
+      padding: 16px;
+      background: #020617;
+      color: #cbd5e1;
+      border-radius: 14px;
+      font-size: 0.95rem;
+    }
+
+    .proteccion {
+      margin-top: 12px;
+      padding: 16px;
+      background: rgba(16, 185, 129, 0.09);
+      color: #a7f3d0;
+      border-radius: 14px;
+      font-size: 0.95rem;
+    }
+
+    /* RECOMENDACIONES */
+
+    .consejos {
+      margin-top: 50px;
+      background: linear-gradient(135deg, #22d3ee, #0891b2);
+      color: #082f49;
+      border-radius: 28px;
+      padding: 40px;
+    }
+
+    .consejos h2 {
+      font-size: 2rem;
+      margin-bottom: 25px;
+    }
+
+    .lista-consejos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .consejo {
+      background: rgba(255, 255, 255, 0.27);
+      padding: 17px;
+      border-radius: 14px;
+      font-weight: bold;
+    }
+
+    /* MENSAJE FINAL */
+
+    .final {
+      margin-top: 40px;
+      padding: 40px;
+      text-align: center;
+      border-radius: 25px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.30);
+    }
+
+    .final .emoji {
+      font-size: 50px;
+    }
+
+    .final h2 {
+      margin: 10px 0;
+      font-size: 2rem;
+      color: #fcd34d;
+    }
+
+    .final p {
+      max-width: 700px;
+      margin: auto;
+      color: #e2e8f0;
+      font-size: 1.08rem;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 14px;
+      padding: 40px 10px;
+    }
+
+    /* ADAPTACIÓN PARA TELÉFONOS */
+
+    @media (max-width: 750px) {
+      .container {
+        width: 93%;
+        padding-top: 25px;
+      }
+
+      .hero {
+        padding: 30px 23px;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .quishing {
+        padding: 25px;
+      }
+
+      .quishing h2 {
+        font-size: 1.55rem;
+      }
+
+      .cards,
+      .lista-consejos {
+        grid-template-columns: 1fr;
+      }
+
+      .consejos {
+        padding: 28px 22px;
+      }
+
+      .section-title h2 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- ALERTA PRINCIPAL -->
+
+    <section class="hero">
+
+      <div class="alerta">
+        ⚠️ ALERTA DE CIBERSEGURIDAD
+      </div>
+
+      <h1>
+        ¿Qué habría pasado si este QR hubiese sido malicioso?
+      </h1>
+
+      <p>
+        Acabas de demostrar algo importante: un código QR puede hacer
+        que pases del mundo físico al digital en segundos.
+        Este QR forma parte de una actividad de concienciación,
+        pero uno manipulado podría dirigirte a un sitio fraudulento.
+      </p>
+
+      <div class="pregunta">
+        <strong>🤔 Piensa antes de continuar:</strong><br><br>
+        ¿Revisaste a qué dirección web te llevaba el código QR antes
+        de confiar en él?
+      </div>
+
+    </section>
+
+
+    <!-- EXPLICACIÓN DEL QUISHING -->
+
+    <section class="quishing">
+
+      <div class="quishing-icono">📲</div>
+
+      <h2>
+        Esto se conoce como QR Phishing o “Quishing”
+      </h2>
+
+      <p>
+        Un ciberdelincuente puede utilizar un código QR para intentar
+        dirigirte hacia una página fraudulenta. El objetivo puede ser
+        engañarte para que introduzcas información sensible, descargues
+        contenido o realices una acción creyendo que estás utilizando
+        un servicio legítimo.
+      </p>
+
+    </section>
+
+
+    <!-- MODALIDADES -->
+
+    <div class="section-title">
+
+      <span>
+        UN ATAQUE PUEDE PRESENTARSE DE DIFERENTES FORMAS
+      </span>
+
+      <h2>
+        ¿Reconocerías estas modalidades?
+      </h2>
+
+    </div>
+
+
+    <section class="cards">
+
+      <!-- QUISHING -->
+
+      <article class="card">
+
+        <div class="icon">📱</div>
+
+        <h3>QR Phishing (Quishing)</h3>
+
+        <p>
+          El atacante utiliza un código QR para intentar llevarte
+          a un sitio fraudulento que puede imitar una página legítima.
+        </p>
+
+        <div class="ejemplo">
+          <strong>Ejemplo:</strong><br>
+          Un QR colocado en un lugar público podría llevar a una página
+          que solicita usuario, contraseña o información personal.
+        </div>
+
+        <div class="proteccion">
+          <strong>🛡️ Cómo protegerte:</strong><br>
+          Revisa la dirección web antes de continuar. Si solicita
+          información sensible de forma inesperada, detente y verifica
+          el destino por otro canal.
+        </div>
+
+      </article>
+
+
+      <!-- PHISHING -->
+
+      <article class="card">
+
+        <div class="icon">🎣</div>
+
+        <h3>Phishing</h3>
+
+        <p>
+          Mediante correos electrónicos o páginas fraudulentas se
+          intenta hacer creer a la víctima que está interactuando
+          con una entidad, servicio o persona conocida.
+        </p>
+
+        <div class="ejemplo">
+          <strong>Ejemplo:</strong><br>
+          Recibes un correo indicando que tu cuenta será bloqueada
+          y que debes ingresar inmediatamente mediante un enlace.
+        </div>
+
+        <div class="proteccion">
+          <strong>🛡️ Cómo protegerte:</strong><br>
+          Desconfía de solicitudes inesperadas, revisa el remitente
+          y evita acceder a servicios sensibles desde enlaces recibidos.
+        </div>
+
+      </article>
+
+
+      <!-- SMISHING -->
+
+      <article class="card">
+
+        <div class="icon">💬</div>
+
+        <h3>Smishing</h3>
+
+        <p>
+          Es una modalidad de phishing que utiliza mensajes de texto
+          como SMS para intentar engañar a la víctima.
+        </p>
+
+        <div class="ejemplo">
+          <strong>Ejemplo:</strong><br>
+          Recibes un mensaje informando sobre un supuesto paquete,
+          premio, bloqueo bancario o inconveniente con una cuenta
+          e incluye un enlace.
+        </div>
+
+        <div class="proteccion">
+          <strong>🛡️ Cómo protegerte:</strong><br>
+          No pulses enlaces inesperados. Accede directamente al
+          servicio utilizando su aplicación o dirección web oficial.
+        </div>
+
+      </article>
+
+
+      <!-- VISHING -->
+
+      <article class="card">
+
+        <div class="icon">📞</div>
+
+        <h3>Vishing</h3>
+
+        <p>
+          El engaño se realiza mediante llamadas de voz con las que se
+          intenta obtener información o convencer a la víctima de
+          realizar determinadas acciones.
+        </p>
+
+        <div class="ejemplo">
+          <strong>Ejemplo:</strong><br>
+          Una persona llama haciéndose pasar por soporte técnico
+          o por una entidad conocida y solicita información,
+          contraseñas o códigos de autenticación.
+        </div>
+
+        <div class="proteccion">
+          <strong>🛡️ Cómo protegerte:</strong><br>
+          Nunca compartas contraseñas ni códigos MFA.
+          Finaliza la llamada y verifica la solicitud utilizando
+          directamente los canales oficiales.
+        </div>
+
+      </article>
+
+
+      <!-- INGENIERÍA SOCIAL -->
+
+      <article class="card">
+
+        <div class="icon">🧠</div>
+
+        <h3>Ingeniería social</h3>
+
+        <p>
+          Busca manipular a las personas aprovechando factores como
+          la confianza, la curiosidad, el miedo o la sensación de urgencia.
+        </p>
+
+        <div class="ejemplo">
+          <strong>Ejemplo:</strong><br>
+          Un atacante crea una situación aparentemente urgente para
+          intentar convencerte de entregar información o ejecutar
+          una determinada acción.
+        </div>
+
+        <div class="proteccion">
+          <strong>🛡️ Cómo protegerte:</strong><br>
+          Haz una pausa. Valida la identidad de quien realiza
+          la solicitud y confirma las peticiones sensibles mediante
+          otro canal.
+        </div>
+
+      </article>
+
+
+      <!-- ROBO DE CREDENCIALES -->
+
+      <article class="card">
+
+        <div class="icon">🔐</div>
+
+        <h3>Robo de credenciales</h3>
+
+        <p>
+          Una página fraudulenta puede intentar capturar los datos
+          introducidos por una persona que cree estar accediendo
+          a un servicio legítimo.
+        </p>
+
+        <div class="ejemplo">
+          <strong>Ejemplo:</strong><br>
+          Después de escanear un QR aparece una pantalla similar
+          a un inicio de sesión conocido y solicita correo
+          y contraseña.
+        </div>
+
+        <div class="proteccion">
+          <strong>🛡️ Cómo protegerte:</strong><br>
+          Comprueba el dominio antes de introducir credenciales,
+          utiliza contraseñas únicas y activa MFA siempre que
+          esté disponible.
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- CONSEJOS -->
+
+    <section class="consejos">
+
+      <h2>
+        🛡️ Antes de escanear un código QR
+      </h2>
+
+      <div class="lista-consejos">
+
+        <div class="consejo">
+          1. No confíes en un QR únicamente porque está ubicado
+          en un lugar conocido.
+        </div>
+
+        <div class="consejo">
+          2. Comprueba la dirección web antes de introducir
+          información.
+        </div>
+
+        <div class="consejo">
+          3. Desconfía si la página crea sensación de urgencia
+          o solicita información sensible de forma inesperada.
+        </div>
+
+        <div class="consejo">
+          4. Nunca compartas contraseñas ni códigos de
+          autenticación MFA.
+        </div>
+
+        <div class="consejo">
+          5. Si algo parece extraño, detente y valida
+          utilizando un canal oficial.
+        </div>
+
+        <div class="consejo">
+          6. Reporta códigos, correos, mensajes o páginas
+          sospechosas según el procedimiento de tu organización.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- REFLEXIÓN FINAL -->
+
+    <section class="final">
+
+      <div class="emoji">🤔</div>
+
+      <h2>
+        La próxima vez que veas un QR...
+      </h2>
+
+      <p>
+        No se trata de dejar de utilizar códigos QR.
+        Se trata de hacer una pausa, comprobar el destino
+        y preguntarte:
+        <strong>¿realmente esperaba llegar a esta página?</strong>
+      </p>
+
+    </section>
+
+
+    <footer>
+      Contenido educativo de concienciación y prevención
+      de riesgos cibernéticos.
+    </footer>
+
+  </main>
+
+</body>
+</html>
